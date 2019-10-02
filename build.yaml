@@ -1,0 +1,23 @@
+- hosts: "all"
+  gather_facts: yes
+  become: yes
+  vars:
+    ansible_python_interpreter   : "/usr/bin/python3"
+    project_name  : "nfq"
+    env           : "tools"
+    ansible_ssh_private_key_file : "~/.ssh/nfq-tools"
+    ansible_ssh_user             : "ubuntu"
+  roles:
+    - role: nfq.common
+      vars:
+        vm_hostname: "{{ project_name }}-{{ env }}-app-php"
+    - role: nfq.php
+      vars:
+        php_version: 7.2
+    - role: nfq.composer
+    - role: nfq.nginx
+      vars:
+        force_use_external_vhost: true 
+        vhost_directory: "./vhosts/"
+      tags:
+        - nginx

@@ -1,0 +1,19 @@
+# DEFINE TARGET VM GROUP
+# BY USING AWS EC2 TAGGING SYSTEM
+# TAGS OF VM ARE DEFINED ON TERRAFORM INFRASTRUCTURE  
+---
+plugin: aws_ec2
+regions:
+  - ap-southeast-1
+filters:
+  tag:Environment: tools 
+  instance-state-name: running
+groups:
+  jenkins.master    : "tags.Stack == 'jenkins'    and tags.Role == 'master'"
+# jenkins.slave     : "tags.Stack == 'jenkins'    and tags.Role == 'slave'"
+  wireguard.master  : "tags.Stack == 'wireguard'  and tags.Role == 'master'"
+  phpmyadmin.master : "tags.Stack == 'phpmyadmin' and tags.Role == 'master'"
+compose:
+  # set the ansible_host variable to connect with the private IP address without changing the hostname
+  # ansible_host: private_ip_address
+  ansible_host: public_ip_address
