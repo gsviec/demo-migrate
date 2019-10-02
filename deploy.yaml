@@ -1,0 +1,19 @@
+- hosts: "{{ lookup('env','DEPLOY_HOST_TAG') | default('all', true) }}"
+  become: yes
+  vars:
+    ansistrano_deploy_from: "./app/"
+    ansistrano_deploy_to: "/var/www"
+    ansistrano_keep_releases: 2
+    ansistrano_deploy_via: "rsync"
+    ansistrano_current_via: "symlink"
+    ansible_python_interpreter: /usr/bin/python3
+    ansistrano_allow_anonymous_stats: false
+    project_name  : "nfq"
+    env           : "tools"
+    ansible_ssh_private_key_file : "~/.ssh/nfq-tools"
+    ansible_ssh_user             : "ubuntu"
+    #Hooks:
+    ansistrano_after_symlink_tasks_file: "after-symlink-shared.yaml"
+
+  roles:
+    - ansistrano.deploy

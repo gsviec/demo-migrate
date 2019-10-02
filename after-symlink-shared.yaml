@@ -1,0 +1,27 @@
+- name: Make sure user www-data is owner of current release version
+  file:
+    path: "/var/www"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0755
+    recurse: yes
+    force: yes
+
+- name: php install/update
+  shell: /bin/bash -lc "composer install --no-dev"
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}"
+  become_user: www-data
+
+- name: Add migrate
+  shell: /bin/bash -lc "php artisan migrate"
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}"
+  become_user: www-data
+
+- name: Set host file make easy debug
+  cron:
+    name: "a job host file"
+    special_time: "reboot"
+    job: hostnamectl set-hostname nfq-prod-app-php

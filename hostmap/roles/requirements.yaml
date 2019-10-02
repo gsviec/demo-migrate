@@ -1,0 +1,54 @@
+# Internal roles from devops-team of NFQ
+- src: git@git.nfq.asia:devops/ansible-role-common.git
+  scm: git
+  name: nfq.common
+  version: "2.0.1"
+
+- src: git@git.nfq.asia:devops/ansible-role-wireguard.git
+  scm: git
+  name: nfq.wireguard
+  version: "1.1.0"
+
+- src: git@git.nfq.asia:devops/ansible-role-lvm.git
+  scm: git
+  name: nfq.lvm
+  version: "1.1.0"
+
+- src: git@git.nfq.asia:devops/ansible-role-php.git
+  scm: git
+  name: nfq.php
+  version: "1.1.0"
+
+- src: git@git.nfq.asia:devops/ansible-role-composer.git
+  scm: git
+  name: nfq.composer
+  version: "1.1.0"
+
+- src: git@git.nfq.asia:devops/ansible-role-jenkins
+  scm: git
+  name: nfq.jenkins
+  version: "master"
+
+- src: git@git.nfq.asia:devops/ansible-role-nodejs
+  scm: git
+  name: nfq.nodejs
+  version: "1.1.1" 
+ 
+- src: git@git.nfq.asia:devops/ansible-role-redis
+  scm: git
+  name: nfq.redis
+  version: "1.0.0"  
+
+- src: git@git.nfq.asia:devops/ansible-mongodb.git
+  scm: git
+  name: nfq.mongodb
+  version: "1.1.0"
+
+- src: git@git.nfq.asia:devops/ansible-role-nginx.git
+  scm: git
+  name: nfq.nginx
+  version: "2.0.0"
+
+# External roles from ansible galaxy - trusted by community
+- src: geerlingguy.java
+- src: geerlingguy.docker

@@ -1,0 +1,17 @@
+# DEFINE TARGET VM GROUP
+# BY USING AWS EC2 TAGGING SYSTEM
+# TAGS OF VM ARE DEFINED ON TERRAFORM INFRASTRUCTURE
+---
+plugin: aws_ec2
+regions:
+  - ap-southeast-1
+filters:
+  tag:Environment: dev 
+  instance-state-name: running
+groups:
+  admin.frontend : "tags.Stack == 'admin' and tags.Role == 'frontend'"
+  admin.api      : "tags.Stack == 'admin' and tags.Role == 'api'"
+compose:
+  # set the ansible_host variable to connect with the private IP address without changing the hostname
+  # ansible_host: private_ip_address
+  ansible_host: public_ip_address
