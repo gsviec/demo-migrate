@@ -15,7 +15,7 @@
   become_user: www-data
 
 - name: Add migrate
-  shell: /bin/bash -lc "php artisan migrate"
+  shell: /bin/bash -lc "php artisan migrate --force"
   args:
     chdir: "{{ ansistrano_release_path.stdout }}"
   become_user: www-data

@@ -48,6 +48,7 @@ pipeline {
         steps {
           sh """
             cd ./app
+            cp .env.prod .env
             export ANSIBLE_CONFIG="./hostmap/ansible.cfg"
             ansible-galaxy install -r hostmap/roles/requirements.yaml
 
