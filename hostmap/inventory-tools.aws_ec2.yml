@@ -13,6 +13,8 @@ groups:
 # jenkins.slave     : "tags.Stack == 'jenkins'    and tags.Role == 'slave'"
   wireguard.master  : "tags.Stack == 'wireguard'  and tags.Role == 'master'"
   phpmyadmin.master : "tags.Stack == 'phpmyadmin' and tags.Role == 'master'"
+  migrate : "tags.Stack == 'php' and tags.Role == 'migrate'"
+
 compose:
   # set the ansible_host variable to connect with the private IP address without changing the hostname
   # ansible_host: private_ip_address
