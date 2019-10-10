@@ -1,7 +1,7 @@
 - hosts: "{{ lookup('env','DEPLOY_HOST_TAG') | default('all', true) }}"
   become: yes
   vars:
-    ansistrano_deploy_from: "./"
+    ansistrano_deploy_from: "{{ lookup('env','WORKSPACE') }}/app/"
     ansistrano_deploy_to: "/var/www"
     ansistrano_keep_releases: 2
     ansistrano_deploy_via: "rsync"
