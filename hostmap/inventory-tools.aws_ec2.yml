@@ -17,5 +17,5 @@ groups:
 
 compose:
   # set the ansible_host variable to connect with the private IP address without changing the hostname
-  # ansible_host: private_ip_address
-  ansible_host: public_ip_address
+  ansible_host: private_ip_address
+  #ansible_host: public_ip_address
